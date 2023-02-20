@@ -1,0 +1,48 @@
+.realtors {
+    background-color: $color-secondary;
+    grid-column: col-start 7 / full-end;
+    padding: 3rem;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    grid-row-gap: 2rem;
+    
+    @media only screen and (max-width: $bp-medium) {
+        grid-column: 1 / -1;
+    }
+
+    //container me vete
+    &__list {
+        display: grid;
+        grid-template-columns: min-content max-content; //min-content-->img  max-contetn-->text
+        grid-column-gap: 2rem;
+        grid-row-gap: 5vh; //to change when we change the height of the viewport
+        align-items: center;
+        
+
+        //per ta kthyer ne 6 kcolona, foto dhe emer
+        @media only screen and (max-width: $bp-medium) {
+            grid-template-columns: repeat(3, min-content max-content); // per ti vene ne nje rresht
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            grid-template-columns: min-content max-content;
+            //per ti vene njera mbi tjetren serisht
+        }
+    }
+
+    &__img {
+        width: 7rem;
+        border-radius: 50%;
+        display: block;
+    }
+
+    &__sold {
+        text-transform: uppercase;
+        color: $color-grey-light-2;
+        margin-top: -3px; //similar to transform
+    }
+
+}

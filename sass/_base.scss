@@ -1,0 +1,75 @@
+// COLOR VARIABLES
+$color-primary: #c69963;
+$color-primary-dark: #B28451;
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483A;
+$color-grey-dark-2: #6D5D4B;
+
+// FONT VARIABLES
+$font-primary: 'Nunito', sans-serif;
+$font-display: 'Josefin Sans', sans-serif;
+
+//REPSONSIVE BREAKPOINT -VARIABLES
+$bp-largest: 75em;    //1200px
+$bp-large: 62.5em;   //1000px
+$bp-medium: 50em;   //800px
+$bp-small: 37.5em; //600px
+
+//GLOBAL RESET
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit; //from html
+
+}
+
+html { 
+    box-sizing: border-box; //why
+    font-size: 62.5%; //overall fontsize so 1rem=10px
+
+    @media only screen and (max-width: $bp-largest) {
+        font-size: 50%;
+    }
+
+}
+
+body {
+    font-family: $font-primary;
+    color: $color-grey-dark-2;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 80vh min-content 40vw repeat(3, min-content); 
+    //sidebar-> 80vh row and with responsive height
+    //features-> min-content mund te zevendesohet me auto, ka per qellim qe te rritet nese width zvogelohet dhe items te kalojne ne rreshta te rinj// te adaptohen ne varesi te kontentit
+    // 40vw eshte ne funksion te widthit sepse height nuk ndryshon por me ndryshimin e width ndryshojne permasat e items 
+    //footer gallery and section -> min-content sepse pershtaten sipas contentit qe kane 
+    
+    grid-template-columns:[sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8,[col-start] minmax(min-content, 14rem)[col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+    //So we want to have eight columns, and we want the widht of each of these columns to be between their minimum content and 140px (14rem)
+    //1fr ->bejne te mundur qenderzimin e 8 colonave ne qender te vieportit dhe sidebarit anash. -> minmax(6rem, 1fr) e beme keshtu qe ne momentin qe zvogelohet viewport te mos ngjeshen kolonat mbi njera tjetren por te ruajne nje distance te paracakturar minimalisht 60px por do te zvogelohen vete kolonat 
+
+    //do te shtojme nje rresht te ri dhe do te heqim kolonen e pare (6rem) tek row eshte sidebar
+    @media only screen and (max-width: $bp-large) {
+        grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content); 
+        grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8,[col-start] minmax(min-content, 14rem)[col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+    }
+
+    //6rem eshte sidebar
+    //100vh eshte header - 6 e sidebarit qe te mos calc function  zbrese poshte
+    @media only screen and (max-width: $bp-medium) {
+        grid-template-rows: 6rem calc(100vh - 6rem);   
+
+        //grid-template-rows: 6rem calc(100vh - 6rem) min-content min-content min-content repeat(3, min-content);  nuk ka nevoje ta shkruajme keshtu sepse automatikisht algoritmi do ti rendise ne kete menyre. e rendesishme eshte te percaktojme rreshtat e pare te cilat jane costum
+    }
+}

@@ -1,0 +1,50 @@
+.features {
+    //@support not(display grid) pe te testuar nese broswerat e superotojne nje element
+    grid-column: center-start / center-end;
+    //feature is a grid item, but we want to transform it in a grid container
+
+    //subgrid it will So basically it will allow a grid that is inside a grid,so like in this case here, to like snap it's tracks to the parent grid.[not avaiable yeat]
+    margin: 15rem 0;
+ 
+    display: grid;
+    //grid-template-columns: repeat(3, 1fr);
+    // grid-template-rows: auto auto; not necesary it hapends automatically (if we dont define our rows they will place themselfs automatically in implicid way
+
+    //to make it responsive in order so the columns can be redused if the viewport gets smaller
+    //based on this the css will ad as many tracks so it can fill the space
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+
+    grid-gap: 6rem;
+    align-items: start; // texti dhe headeri dhe icona te mos kene hapesira te panevojshme duke qene se default eshte stretch
+
+    @media only screen and (max-width: $bp-small) {
+        margin: 10rem 0;
+    }
+}
+
+
+//are indipended from features, and still are related with one and another
+
+//this feature is itself a grid item can become a grid container
+.feature {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-row-gap: 1.5rem;
+    grid-column-gap: 2.5rem;
+    
+
+    &__icon {
+        fill: $color-primary;
+        width: 4.5rem;
+        height: 4.5rem;
+        grid-row: 1 /span 2;
+       // grid-row: 1 / -1; //it means the end of the explicid grid not the end of the grid
+       transform: translateY(-1rem);
+    }
+
+    &__text {
+        font-size: 1.7rem;
+    }
+
+
+}

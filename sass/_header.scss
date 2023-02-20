@@ -1,0 +1,79 @@
+.header {
+    background-color: $color-grey-dark-1;
+    grid-column: full-start / col-end 6;// pas emmrit venoset numri ku do te ndalohet
+    background-image: 
+        linear-gradient(rgba($color-secondary, .93), 
+        rgba($color-secondary, .93)), 
+        url(../img/hero.jpeg);
+
+    background-size: cover;
+    background-position: center;
+    padding: 8rem;
+    padding-top: 4rem;
+
+    //grid display is alot more easy to display the heading because it doesnt need to ad margin or to exlude the last child when we ad margin
+    display: grid;
+    grid-template-columns: minmax(min-content, max-content); // nuk do te jete me nerow sesa vete contenti
+    grid-template-rows: 1fr min-contetn minmax(6rem, min-content) 1fr;
+    // 1fr logo
+    //min-content( minimumi qe ze nje contetn
+    //6rem texti
+    //1fr njesoj si hapesira e logos // mqd automatikisht do te stretch i japim align self dhe justify self
+    grid-row-gap: 1.5rem;
+    justify-content: center;
+
+    @media only screen and (max-width: $bp-medium) {
+        grid-column: 1 / -1;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        padding: 5rem;
+    }
+
+    &__logo {
+        height: 3rem;
+        justify-self: center; //kur duam te qenderzojme ter containerin
+    }
+
+    &__btn {
+        align-self: start; //at the top of the grids cell
+        justify-self: start; // to the left
+    }
+
+    &__seenon-text {
+        //megjithese ky div permban vetem text, Grid do ta trajtoje si grid item
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+        grid-column-gap: 1.5rem;
+        align-items: center;
+
+        font-size: 1.6rem;
+        color: $color-grey-light-2;
+       
+        &::before,
+        &::after {
+            content: "";
+            height: 1px;
+            display: block;
+            background-color: currentColor; //$color-grey-light-2;
+           
+        }
+        
+    }
+
+    &__seenon-logos {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 3rem;
+        justify-items: center; //kur duam te qenderzojme elementet
+        align-items: center;
+
+
+        //per te mos i vendosur nje clase vetem per kete rast e selectojme ne kete menyre
+        img {
+            max-height: 2.5rem; //height can be less than 25px
+            max-width: 100%; //can be less than 100%
+            filter: brightness(70%); //erresohet
+        }
+    }
+}
